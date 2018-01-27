@@ -7,17 +7,13 @@
 $(function() {
   console.log('hello world :o');
   
-  $.get('/dreams', function(dreams) {
-    console.log('client :: ' + dreams);
-  });
-  
   $('form').submit(function(event) {
     event.preventDefault();
-    var dream = $('input').val();
-    $.post('/time_input?' + $.param({dream: dream}), function(x) {
+    var dateInput = $('input').val();
+    $.post('/time_input?' + $.param({date: dateInput}), function(x) {
       if(x)
       {
-        $('<li></li>').text(x).appendTo('ul#dreams');      
+        $('<li></li>').text(x).appendTo('ul#dates');      
       }
       $('input').val('');
       $('input').focus();

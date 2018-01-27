@@ -16,48 +16,33 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.get("/dreams", function (request, response) {
-  // response.send(dreams);
-});
-
-// could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
-app.post("/dreams", function (request, response) {
-  // dreams.push(request.query.dream);
-  response.sendStatus(200);
-});
-
 app.post("/time_input", function (request, response) {
   
-  if(!request.query.dream)
+  if(!request.query.date)
     return;
   
-  var unixStamp = parseInt(request.query.dream);
-  var timestamp = Date.parse(request.query.dream);  
+  var unixStamp = parseInt(request.query.date);
+  var timestamp = Date.parse(request.query.date);  
   
   var date;
   
-  if(unixStamp)
-  {
-    date = new Date(unixStamp);
-    console.log('unix :: ' + date);
-  }
-  else if (isNaN(timestamp) == false)
+  if (isNaN(timestamp) == false)
   {
       date = new Date(timestamp);
+      unixStamp = date.getTime()/1000;   
   }
-  else
+  else if (isNaN(unixStamp) == false)
   {
-    date = new Date(request.query.dream);
-    console.log('natural :: ' + date);  
+      date = new Date(unixStamp * 1000);
   }
-  if(!isNaN(date))
-  {
-    response.send(date.toString()); 
-  }
-  else
-  {
-    response.send();
-  }
+  
+  var locale = "en-us";
+  
+  var obj = {
+      unix: isNaN(date) ? null : unixStamp,
+      natural: isNaN(date) ? null : date.toLocaleString(locale, {month: "long"}) + ' ' + date.getDate().toString() + ', ' + date.getFullYear(),
+    };
+  response.send(JSON.stringify(obj));
 });
 
 // listen for requests :)
