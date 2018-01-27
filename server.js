@@ -26,15 +26,15 @@ app.post("/time_input", function (request, response) {
   
   var date;
   
-  if (isNaN(timestamp) == false)
-  {
-      date = new Date(timestamp);
-      unixStamp = date.getTime()/1000;   
-  }
-  else if (isNaN(unixStamp) == false)
+  if (isNaN(unixStamp) == false)
   {
       date = new Date(unixStamp * 1000);
   }
+  else if (isNaN(timestamp) == false)
+  {
+      date = new Date(timestamp);
+      unixStamp = date.getTime()/1000;   
+  }  
   
   var locale = "en-us";
   
