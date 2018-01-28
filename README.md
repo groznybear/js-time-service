@@ -4,12 +4,12 @@ Challenge from [freeCodeCamp](https://www.freecodecamp.org/challenges/timestamp-
 
 Accepted -> Done -> Extended.
 
-[Take a look](https://checktime.glitch.com).
+[Take a look](https://checktime.glitch.me).
 
 API:
 ------------------------
-[Current time on server](https://checktime.glitch.com/api/current_time).
-[Who Are You](https://checktime.glitch.com/api/whoami).
+[Current time on server](https://checktime.glitch.me/api/current_time).
+[Who Are You](https://checktime.glitch.me/api/whoami).
 
 Powered by Glitch BETA
 ------------------------
